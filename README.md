@@ -2,6 +2,21 @@
 
 Inspired by accessible accordion patterns described by [Graham Armfield](https://www.hassellinclusion.com/blog/accessible-accordion-pattern/) and the [USWDS](https://designsystem.digital.gov/components/accordion/) (and preparing for a hopeful futre where `<details>` or some other native element is the answer) this extension is as much about centralizing the pattern as anything else.
 
+## Usage
+
+```markdown
+|+ ## Markdown accordions by 8fold
+- **Pro:** Simple syntax to achieve richer output.
+- **Con:** One more package to keep up to date.
+
+The accordion can accept any markdown that is parsable by your implementation of the CommonMark processor from The PHP League.
+
+The accordions can be used independently, or grouped.
+
+When grouped, only one accordion will be allowed to be open at a time.
++markdown-accordions-by-ef|
+```
+
 ## The syntax
 
 Inspired by conversations in the [CommonMark Spec board](https://talk.commonmark.org/t/html-details-tag/759) we wanted to maintain or principle that Markdown is not HTML that happens to be human-readable, plain-text; rather, it's human-readable, plain-text that can be converted to a rich text format. It just happens the most popular rich-text medium is HTML. Therefore, the following pattern is for a single accordion element (collapsable section):
@@ -34,5 +49,5 @@ We use the `is` attribute over placing custom class names or `data-*` attributes
 ## Roadmap
 
 - [ ] Accordion block, which would allow the creation of a croup of accordions (similar to `fieldset` and `input`).
-- [ ] Supply a generic JS file (or use inline javascript) with a working implementation for both single and multiple accordions.
+- [x] Supply a generic JS file (or use inline javascript) with a working implementation for both single and multiple accordions.
 - [ ] When singular, users can expand and collapse a single accordion. When grouped, only one accordion will be open at a time.

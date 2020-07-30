@@ -4,6 +4,12 @@
     <title>Testing CommonMark Accordions</title>
     <script type="text/javascript" src="./ef-accordions.js"></script>
     <style type="text/css">
+        [is="accordion-group"] {
+            padding: 1rem;
+            margin: 1rem;
+            border: 2px solid cyan;
+        }
+
         [is="accordion"] > button:first-of-type {
             display: block;
             width: 100%;
@@ -48,9 +54,11 @@ use League\CommonMark\Environment;
 use League\CommonMark\CommonMarkConverter;
 
 use Eightfold\CommonMarkAccordions\AccordionExtension;
+use Eightfold\CommonMarkAccordions\AccordionGroupExtension;
 
 $environment = \League\CommonMark\Environment::createCommonMarkEnvironment();
 $environment->addExtension(new AccordionExtension());
+$environment->addExtension(new AccordionGroupExtension());
 $converter = new CommonMarkConverter([], $environment);
 
 $markdown = <<<EOD
@@ -59,7 +67,22 @@ $markdown = <<<EOD
 - **Con:** One more package to keep up to date.
 
 The accordion can accept any markdown that is parsable by your implementation of the CommonMark processor from The PHP League.
+
+The accordions can be used independently, or grouped.
+
+When grouped, only one accordion will be allowed to be open at a time.
 +markdown-accordions-by-ef|
+
+## This is an accordion group
+
+|++
+|+ ### First accordion in group
+This is the first accordion in this grouping.
++first-accordion|
+|+ ### Second accordion in group
+This is the second accordion in this grouping.
++second-accordion|
+++|
 EOD;
 
 print $converter->convertToHtml($markdown);
