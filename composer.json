@@ -1,5 +1,5 @@
 {
-  "name": "8fold/commonmark-abbreviations",
+  "name": "8fold/commonmark-accordions",
   "description": "An extension of PHP League's CommonMark library to enable abbreviation usage.",
   "license": "MIT",
   "type": "library",
