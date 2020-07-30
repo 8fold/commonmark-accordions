@@ -20,10 +20,10 @@ The above would render the following HTML:
 
 ```html
 <h2 is="accordion">
-	<button id="accordion" aria-controls="accordion-panel" aria-expanded="true">Header</button>
+  <button id="accordion" aria-controls="accordion-panel" aria-expanded="true">Header</button>
 </h2>
 <div is="accordion-panel" role="region" id="accordion-panel" tabindex="-1" aria-hidden="false" aria-labelledby="accordion">
-	<p>...markdown content (not another accordion; no nesting)</p>
+  <p>...markdown content (not another accordion; no nesting)</p>
 </div>
 ```
 
