@@ -2,6 +2,12 @@
 
 Inspired by accessible accordion patterns described by [Graham Armfield](https://www.hassellinclusion.com/blog/accessible-accordion-pattern/) and the [USWDS](https://designsystem.digital.gov/components/accordion/) (and preparing for a hopeful futre where `<details>` or some other native element is the answer) this extension is as much about centralizing the pattern as anything else.
 
+## Installation
+
+```bash
+composer require 8fold/commonmark-accordions
+```
+
 ## Usage
 
 ```markdown
@@ -13,13 +19,13 @@ The accordion can accept any markdown that is parsable by your implementation of
 
 The accordions can be used independently, or grouped.
 
-When grouped, only one accordion will be allowed to be open at a time.
+When grouped and using the provided JavaScript, only one accordion will be allowed to be open at a time.
 +markdown-accordions-by-ef|
 ```
 
 ## The syntax
 
-Inspired by conversations in the [CommonMark Spec board](https://talk.commonmark.org/t/html-details-tag/759) we wanted to maintain or principle that Markdown is not HTML that happens to be human-readable, plain-text; rather, it's human-readable, plain-text that can be converted to a rich text format. It just happens the most popular rich-text medium is HTML. Therefore, the following pattern is for a single accordion element (collapsable section):
+Inspired by conversations in the [CommonMark Spec board](https://talk.commonmark.org/t/html-details-tag/759) we wanted to maintain our principle that Markdown is not HTML that happens to be human-readable, plain-text; rather, it's human-readable, plain-text that can be converted intto a rich text format. It just happens, the most popular rich-text format is HTML. Therefore, the following pattern is for a single accordion element (collapsable section):
 
 ```markdown
 |+ ## Heading
@@ -42,12 +48,15 @@ The above would render the following HTML:
 </div>
 ```
 
-Because one of our primary concerns is always around accessibility (particularly technological accessibility), the rendering of the accordions presumes they will not be collapsed on initial load - allowing you to collapse them with client-side scripting.
+For an accordion group, the individual accorions are wrapped simlarly to the individual accordions (trying to reduce cognitive load):
+
+```markdown
+|++
+++|
+```
+
+When rendered, the opening and closing group signifiers are opening and closing `div` tags, respectively.
+
+Because one of our primary concerns is always accessibility (particularly technological accessibility), the rendering of the accordions presumes they will be expanded on initial load - you can then collapse using with client-side scripting.
 
 We use the `is` attribute over placing custom class names or `data-*` attributes to identify the accordion as an accordion.
-
-## Roadmap
-
-- [ ] Accordion block, which would allow the creation of a croup of accordions (similar to `fieldset` and `input`).
-- [x] Supply a generic JS file (or use inline javascript) with a working implementation for both single and multiple accordions.
-- [ ] When singular, users can expand and collapse a single accordion. When grouped, only one accordion will be open at a time.
