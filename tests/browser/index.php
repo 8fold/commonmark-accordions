@@ -18,6 +18,16 @@
             background-color: cadetblue;
         }
 
+        [is="accordion"] > button:first-of-type:before {
+          content: "+";
+          font-size: 32px;
+          margin-right: 8px;
+        }
+
+        [is="accordion"] > button:first-of-type[aria-expanded="true"]:before {
+            content: "−";
+        }
+
         [aria-hidden="true"] {
             display: none;
         }

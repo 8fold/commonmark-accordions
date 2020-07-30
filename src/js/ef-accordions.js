@@ -1,4 +1,6 @@
-let efToggleAccordion = function(b) {
+let efToggleAccordion = function(e) {
+  e.preventDefault();
+  b = e.target;
   p = b.parentElement.nextElementSibling;
   e = (b.getAttribute("aria-expanded") === 'true');
   b.setAttribute("aria-expanded", (!e).toString());
@@ -8,11 +10,6 @@ let efToggleAccordion = function(b) {
 
 document.addEventListener("DOMContentLoaded", function() {
   Array.from(document.querySelectorAll('[is="accordion"]')).forEach(a => {
-    b = a.querySelector('button:first-of-type');
-    efToggleAccordion(b);
-    b.onclick = function(e) {
-      e.preventDefault();
-      efToggleAccordion(e.target);
-    }
+    efToggleAccordion(a.querySelector('button:first-of-type'));
   });
 });

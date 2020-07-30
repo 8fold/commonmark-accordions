@@ -64,7 +64,8 @@ class Accordion extends AbstractBlock
             )->attr(
                 "id {$this->accordionId}",
                 "aria-controls {$this->accordionId}-panel",
-                "aria-expanded true"
+                "aria-expanded true",
+                "onclick efToggleAccordion(event)"
             )
         )->attr("is accordion");
 
