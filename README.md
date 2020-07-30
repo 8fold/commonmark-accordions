@@ -29,8 +29,10 @@ The above would render the following HTML:
 
 Because one of our primary concerns is always around accessibility (particularly technological accessibility), the rendering of the accordions presumes they will not be collapsed on initial load - allowing you to collapse them with client-side scripting.
 
+We use the `is` attribute over placing custom class names or `data-*` attributes to identify the accordion as an accordion.
+
 ## Roadmap
 
 - [ ] Accordion block, which would allow the creation of a croup of accordions (similar to `fieldset` and `input`).
-- [ ] Supply a generic JS file with a working implementation for both single and multiple accordions.
+- [ ] Supply a generic JS file (or use inline javascript) with a working implementation for both single and multiple accordions.
 - [ ] When singular, users can expand and collapse a single accordion. When grouped, only one accordion will be open at a time.
