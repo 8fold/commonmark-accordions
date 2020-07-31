@@ -58,29 +58,50 @@ class Accordion extends AbstractBlock
 
     public function element(ElementRendererInterface $htmlRenderer)
     {
-        $header = UIKit::{$this->headerElement}(
-            UIKit::button(
-                $this->headerContent
-            )->attr(
-                "id {$this->accordionId}",
-                "aria-controls {$this->accordionId}-panel",
-                "aria-expanded true",
-                "onclick efToggleAccordion(event)"
-            )
-        )->attr("is accordion");
+        $hElem   = $this->headerElement;
+        $hFormat = '<%s is="accordion">%s</%s>';
 
-        $panel = UIKit::div(
-            $htmlRenderer->renderBlocks($this->children())
-        )->attr(
-            "is accordion-panel",
-            "id {$this->accordionId}-panel",
-            "tabindex -1",
-            "role region",
-            "aria-hidden false",
-            "aria-labelledby {$this->accordionId}"
-        );
+        $bId      = $this->accordionId;
+        $bContent = $this->headerContent;
+        $bFormat  = '<button id="%s" onclick="efToggleAccordion(event)" aria-controls="%s" aria-expanded="true">%s</button>';
 
-        return $header . $panel;
+
+        $pId      = $bId ."-panel";
+        $pContent = $htmlRenderer->renderBlocks($this->children());
+        $pFormat  = '<div is="accordion-panel" role="region" id="%s" tabindex="-1" aria-hidden="false" aria-labelledby="%s">%s</div>';
+
+
+        $bString = sprintf($bFormat, $bId, $pId, $bContent);
+        $hString = sprintf($hFormat, $hElem, $bString, $hElem);
+        $pString = sprintf($pFormat, $pId, $bId, $pContent);
+
+        return $hString . $pString;
+
+
+        // $header =
+        // $header = UIKit::{$this->headerElement}(
+        //     UIKit::button(
+        //         $this->headerContent
+        //     )->attr(
+        //         "id {$this->accordionId}",
+        //         "aria-controls {$this->accordionId}-panel",
+        //         "aria-expanded true",
+        //         "onclick efToggleAccordion(event)"
+        //     )
+        // )->attr("is accordion");
+
+        // $panel = UIKit::div(
+        //     $htmlRenderer->renderBlocks($this->children())
+        // )->attr(
+        //     "is accordion-panel",
+        //     "id {$this->accordionId}-panel",
+        //     "tabindex -1",
+        //     "role region",
+        //     "aria-hidden false",
+        //     "aria-labelledby {$this->accordionId}"
+        // );
+
+        // return $header . $panel;
     }
 
     public function canContain(AbstractBlock $block): bool
