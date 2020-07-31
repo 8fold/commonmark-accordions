@@ -12,7 +12,6 @@ use League\CommonMark\HtmlElement;
 use League\CommonMark\Block\Element\AbstractBlock;
 
 use Eightfold\Shoop\Shoop;
-use Eightfold\Markup\UIKit;
 
 /**
  * group pattern:
@@ -29,10 +28,9 @@ class AccordionGroup extends AbstractBlock
 {
     public function element(ElementRendererInterface $htmlRenderer)
     {
-        $group = UIKit::div(
-            $htmlRenderer->renderBlocks($this->children())
-        )->attr("is accordion-group")->unfold();
-        return $group;
+        $gContent = $htmlRenderer->renderBlocks($this->children());
+        $gFormat  = '<div is="accordion-group">%s</div>';
+        return sprintf($gFormat, $gContent);
     }
 
     public function canContain(AbstractBlock $block): bool

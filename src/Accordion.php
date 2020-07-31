@@ -12,7 +12,6 @@ use League\CommonMark\HtmlElement;
 use League\CommonMark\Block\Element\AbstractBlock;
 
 use Eightfold\Shoop\Shoop;
-use Eightfold\Markup\UIKit;
 
 /**
  * single pattern:
