@@ -8,9 +8,6 @@ use League\CommonMark\Cursor;
 
 use Eightfold\CommonMarkAccordions\AccordionGroup;
 
-use Eightfold\Shoop\Shoop;
-use Eightfold\Markup\UIKit;
-
 class AccordionGroupParser implements BlockParserInterface
 {
     public function parse(ContextInterface $context, Cursor $cursor): bool

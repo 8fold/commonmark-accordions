@@ -11,8 +11,6 @@ use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Block\Element\AbstractBlock;
 
-use Eightfold\Shoop\Shoop;
-
 /**
  * single pattern:
  * |+ {header element}\n
@@ -49,10 +47,11 @@ class Accordion extends AbstractBlock
         $this->setStartLine($this->context->getLineNumber());
         $this->setLastLineBlank(true);
 
-        $preHeader = Shoop::string($cursor->getLine())->minus("|+ ");
-        $this->headerElement = $preHeader->divide(" ", false, 2)->first()->count()
-            ->string()->startUnfolded("h");
-        $this->headerContent = $preHeader->divide(" ", false, 2)->last;
+        $preHeader = substr($cursor->getLine(), 3);
+        list($element, $content) = explode(" ", $preHeader, 2);
+
+        $this->headerContent = $content;
+        $this->headerElement = "h". strlen($element);
     }
 
     public function element(ElementRendererInterface $htmlRenderer)
@@ -75,32 +74,6 @@ class Accordion extends AbstractBlock
         $pString = sprintf($pFormat, $pId, $bId, $pContent);
 
         return $hString . $pString;
-
-
-        // $header =
-        // $header = UIKit::{$this->headerElement}(
-        //     UIKit::button(
-        //         $this->headerContent
-        //     )->attr(
-        //         "id {$this->accordionId}",
-        //         "aria-controls {$this->accordionId}-panel",
-        //         "aria-expanded true",
-        //         "onclick efToggleAccordion(event)"
-        //     )
-        // )->attr("is accordion");
-
-        // $panel = UIKit::div(
-        //     $htmlRenderer->renderBlocks($this->children())
-        // )->attr(
-        //     "is accordion-panel",
-        //     "id {$this->accordionId}-panel",
-        //     "tabindex -1",
-        //     "role region",
-        //     "aria-hidden false",
-        //     "aria-labelledby {$this->accordionId}"
-        // );
-
-        // return $header . $panel;
     }
 
     public function canContain(AbstractBlock $block): bool
@@ -122,7 +95,7 @@ class Accordion extends AbstractBlock
         if (empty($containerEnd)) {
             return true;
         }
-        $this->accordionId = Shoop::string($cursor->getLine())->dropFirst()->dropLast;
+        $this->accordionId = substr($cursor->getLine(), 1, -1);
         return false;
     }
 }

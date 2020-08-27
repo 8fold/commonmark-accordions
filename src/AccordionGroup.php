@@ -11,8 +11,6 @@ use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Block\Element\AbstractBlock;
 
-use Eightfold\Shoop\Shoop;
-
 /**
  * group pattern:
  * ...\n
